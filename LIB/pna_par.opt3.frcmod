@@ -1,0 +1,36 @@
+
+ANGLE
+C - CT - N*    63.0      110.10    jak C -CT-N
+n3 - C - O     80.0      122.90    AA general (N - C - O)
+N - c - o      80.0      122.90    AA general
+C - n3 - c3    50.0      121.90    AA general 
+c-N-CT         50.0      121.90    AA general 
+C - n3 -hn     50.0      120.00    AA general, gln, asn,changed based on NMA nmodes
+c - N - H      50.0      120.00    AA general, gln, asn,changed based on NMA nmodes
+CT - C - n3    70.0      116.60    AA general
+c3 - c - N     70.0      116.60    AA general
+
+BOND
+c - N   478.2    1.345        SOURCE1  1235    0.0162    0.0215
+C - n3   490.0    1.335       JCC,7,(1986),230; AA
+
+DIHE
+X-C-n3-X    4   10.00        180.0             2.         AA,NMA
+X-c-N-X     4   10.00        180.0             2.         AA,NMA
+C-N-CT-CT   1   0.285          0.0            -2.         alpha
+C-N-CT-CT   1   0.122          0.0            -4.
+C-N-CT-CT   1   0.103          0.0             5.
+N-CT-CT-N   1   1.1539       180.0            -1.         beta
+N-CT-CT-N   1   0.460          0.0            -3.         
+N-CT-CT-N   1   0.178          0.0            -4.         
+N-CT-CT-N   1   0.210          0.0             5.         
+CT-N-CT-CT  1   0.614          0.0            -3.         gamma
+CT-N-CT-CT  1   0.706          0.0            -4.         
+CT-N-CT-CT  1   0.161          0.0             5.         
+C-CT-N-CT   1   0.235          0.0            -1.         delta
+C-CT-N-CT   1   0.701          0.0            -3.         
+C-CT-N-CT   1   0.416          0.0            -4.         
+C-CT-N-CT   1   0.048          0.0             5.         
+N-CT-C-N    1   0.235          0.0            -3.         epsilon
+N-CT-C-N    1   0.120          0.0             5.       
+

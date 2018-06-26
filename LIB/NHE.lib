@@ -1,0 +1,51 @@
+!entry.NHE.unit.atoms table  str name  str type  int typex  int resx  int flags  int seq  int elmnt  dbl chg
+ "N" "N" 0 1 131072 1 7 -0.463000
+ "HN1" "H" 0 1 131072 2 1 0.231500
+ "HN2" "H" 0 1 131072 3 1 0.231500
+!entry.NHE.unit.atomspertinfo table  str pname  str ptype  int ptypex  int pelmnt  dbl pchg
+ "N" "N" 0 -1 0.0
+ "HN1" "H" 0 -1 0.0
+ "HN2" "H" 0 -1 0.0
+!entry.NHE.unit.boundbox array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!!index array str
+ "NHE"
+!entry.NHE.unit.childsequence single int
+ 2
+!entry.NHE.unit.connect array int
+ 1
+ 0
+!entry.NHE.unit.connectivity table  int atom1x  int atom2x  int flags
+ 1 2 1
+ 1 3 1
+!entry.NHE.unit.hierarchy table  str abovetype  int abovex  str belowtype  int belowx
+ "U" 0 "R" 1
+ "R" 1 "A" 1
+ "R" 1 "A" 2
+ "R" 1 "A" 3
+!entry.NHE.unit.name single str
+ "NHE"
+!entry.NHE.unit.positions table  dbl x  dbl y  dbl z
+ 2.193696 1.597759 -1.607204E-06
+ 3.034948 1.038834 -2.739928E-06
+ 2.250077 2.606184 -5.030662E-07
+!entry.NHE.unit.residueconnect table  int c1x  int c2x  int c3x  int c4x  int c5x  int c6x
+ 1 1 0 0 0 0
+!entry.NHE.unit.residues table  str name  int seq  int childseq  int startatomx  str restype  int imagingx
+ "NHE" 1 4 1 "p" 0
+!entry.NHE.unit.residuesPdbSequenceNumber array int
+ 0
+!entry.NHE.unit.solventcap array dbl
+ -1.000000
+ 0.0
+ 0.0
+ 0.0
+ 0.0
+!entry.NHE.unit.velocities table  dbl x  dbl y  dbl z
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0
+ 0.0 0.0 0.0

@@ -1,0 +1,733 @@
+log started: Tue Jun 26 12:02:06 2018
+
+Log file: ./leap.log
+>> # ----- NOTE: this is designed for PDB format 3!
+>> #       Uses ff99bsc0_chiOL3 for RNA
+>> #       	(ff99): Wang et al. J. Comp. Chem. 21: 1049, 2000
+>> #       	(bsc0): Perez et al. Biophys J. 92: 3817, 2007
+>> #       	(chiOL3): Zgarbova et al. JCTC 7: 2886, 2011
+>> #           (note: all of the above are in parm10.dat, loaded below)
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "H"   "H" "sp3" }
+>> 	{ "HO"  "H" "sp3" }
+>> 	{ "HS"  "H" "sp3" }
+>> 	{ "H1"  "H" "sp3" }
+>> 	{ "H2"  "H" "sp3" }
+>> 	{ "H3"  "H" "sp3" }
+>> 	{ "H4"  "H" "sp3" }
+>> 	{ "H5"  "H" "sp3" }
+>> 	{ "HW"  "H" "sp3" }
+>> 	{ "HC"  "H" "sp3" }
+>> 	{ "HA"  "H" "sp3" }
+>> 	{ "HP"  "H" "sp3" }
+>> 	{ "HZ"  "H" "sp3" }
+>> 	{ "OH"  "O" "sp3" }
+>> 	{ "OS"  "O" "sp3" }
+>> 	{ "O"   "O" "sp2" }
+>> 	{ "O2"  "O" "sp2" }
+>> 	{ "OP"  "O" "sp2" }
+>> 	{ "OW"  "O" "sp3" }
+>> 	{ "CT"  "C" "sp3" }
+>> 	{ "CX"  "C" "sp3" }
+>> 	{ "CS"  "C" "sp2" }
+>> 	{ "C"   "C" "sp2" }
+>> 	{ "C*"  "C" "sp2" }
+>> 	{ "CA"  "C" "sp2" }
+>> 	{ "CB"  "C" "sp2" }
+>> 	{ "CC"  "C" "sp2" }
+>> 	{ "CN"  "C" "sp2" }
+>> 	{ "CM"  "C" "sp2" }
+>> 	{ "CK"  "C" "sp2" }
+>> 	{ "CQ"  "C" "sp2" }
+>> 	{ "CD"  "C" "sp2" }
+>> 	{ "C5"  "C" "sp2" }
+>> 	{ "C4"  "C" "sp2" }
+>> 	{ "CP"  "C" "sp2" }
+>> 	{ "CI"  "C" "sp3" }
+>> 	{ "CW"  "C" "sp2" }
+>> 	{ "CV"  "C" "sp2" }
+>> 	{ "CR"  "C" "sp2" }
+>> 	{ "CY"  "C" "sp2" }
+>> 	{ "C0"  "Ca" "sp3" }
+>> 	{ "MG"  "Mg" "sp3" }
+>> 	{ "N"   "N" "sp2" }
+>> 	{ "NA"  "N" "sp2" }
+>> 	{ "N2"  "N" "sp2" }
+>> 	{ "N*"  "N" "sp2" }
+>> 	{ "NB"  "N" "sp2" }
+>> 	{ "NC"  "N" "sp2" }
+>> 	{ "NT"  "N" "sp3" }
+>> 	{ "NY"  "N" "sp2" }
+>> 	{ "N3"  "N" "sp3" }
+>> 	{ "S"   "S" "sp3" }
+>> 	{ "SH"  "S" "sp3" }
+>> 	{ "P"   "P" "sp3" }
+>> 	{ "LP"  ""  "sp3" }
+>> 	{ "EP"  ""  "sp3" }
+>> 	{ "F"   "F" "sp3" }
+>> 	{ "Cl"  "Cl" "sp3" }
+>> 	{ "Br"  "Br" "sp3" }
+>> 	{ "I"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the main parameter set.
+>> #
+>> parm10 = loadamberparams parm10.dat
+Loading parameters: /home/maciej/amber16/dat/leap/parm/parm10.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA
+(UNKNOWN ATOM TYPE: Zn)
+(UNKNOWN ATOM TYPE: EP)
+>> #
+>> #	Load main chain and terminating nucleic acids
+>> #
+>> 
+>> loadOff RNA.lib
+Loading library: /home/maciej/amber16/dat/leap/lib/RNA.lib
+Loading: A
+Loading: A3
+Loading: A5
+Loading: AN
+Loading: C
+Loading: C3
+Loading: C5
+Loading: CN
+Loading: G
+Loading: G3
+Loading: G5
+Loading: GN
+Loading: OHE
+Loading: U
+Loading: U3
+Loading: U5
+Loading: UN
+>> 
+>> #
+>> #	Define the PDB name map for the nucleic acids
+>> #
+>> addPdbResMap {
+>>   { 0 "G" "G5"  } { 1 "G" "G3"  } 
+>>   { 0 "A" "A5"  } { 1 "A" "A3"  } 
+>>   { 0 "C" "C5"  } { 1 "C" "C3"  } 
+>>   { 0 "U" "U5"  } { 1 "U" "U3"  } 
+>> #  some old Amber residue names for RNA:
+>>   { 0  "RA5" "A5" } { 1 "RA3" "A3"} {"RA" "A" }
+>>   { 0  "RC5" "C5" } { 1 "RC3" "C3"} {"RC" "C" }
+>>   { 0  "RG5" "G5" } { 1 "RG3" "G3"} {"RG" "G" }
+>>   { 0  "RU5" "U5" } { 1 "RU3" "U3"} {"RU" "U" }
+>> #  uncomment out the following if you have this old style RNA files:
+>> # { 0 "GUA" "G5"  } { 1 "GUA" "G3"  } { "GUA" "G" }
+>> # { 0 "ADE" "A5"  } { 1 "ADE" "A3"  } { "ADE" "A" }
+>> # { 0 "CYT" "C5"  } { 1 "CYT" "C3"  } { "CYT" "C" }
+>> # { 0 "URA" "R5"  } { 1 "URA" "R3"  } { "URA" "R" }
+>> 
+>> }
+>> 
+>> #  try to be good about reading in really old atom names as well:
+>> addPdbAtomMap {
+>>   { "O5*" "O5'" }
+>>   { "C5*" "C5'" }
+>>   { "C4*" "C4'" }
+>>   { "O4*" "O4'" }
+>>   { "C3*" "C3'" }
+>>   { "O3*" "O3'" }
+>>   { "C2*" "C2'" }
+>>   { "O2*" "O2'" }
+>>   { "C1*" "C1'" }
+>>   { "C5M" "C7"  }
+>>   { "H1*" "H1'" }
+>>   { "H2*1" "H2'" }
+>>   { "H2*2" "H2''" }
+>>   { "H2'1" "H2'" }
+>>   { "H2'2" "H2''" }
+>>   { "H3*" "H3'" }
+>>   { "H4*" "H4'" }
+>>   { "H5*1" "H5'" }
+>>   { "H5*2" "H5''" }
+>>   { "H5'1" "H5'" }
+>>   { "H5'2" "H5''" }
+>>   { "HO'2" "HO2'" }
+>>   { "H5T"  "HO5'" }
+>>   { "H3T"  "HO3'" }
+>>   { "O1'" "O4'" }
+>>   { "OA"  "OP1" }
+>>   { "OB"  "OP2" }
+>>   { "O1P" "OP1" }
+>>   { "O2P" "OP2" }
+>> }
+>> 
+> 
+> source leaprc.water.tip3p
+----- Source: /home/maciej/amber16/dat/leap/cmd/leaprc.water.tip3p
+----- Source of /home/maciej/amber16/dat/leap/cmd/leaprc.water.tip3p done
+>> #
+>> #       Load water and ions for TIP3P + Joung-Chetham monovalent ions
+>> #       + Li/Merz highly charged ions (+2 to +4, 12-6 normal usage set)
+>> #
+>> addAtomTypes {
+>> 	{ "F-"   "F" "sp3" }
+>> 	{ "Cl-"  "Cl" "sp3" }
+>> 	{ "Br-"  "Br" "sp3" }
+>> 	{ "I-"   "I"  "sp3" }
+>> 	{ "Li+"  "Li"  "sp3" }
+>> 	{ "Na+"  "Na"  "sp3" }
+>> 	{ "K+"  "K"  "sp3" }
+>> 	{ "Rb+"  "Rb"  "sp3" }
+>> 	{ "Cs+"  "Cs"  "sp3" }
+>> 	{ "Mg+"  "Mg"  "sp3" }
+>>     { "Tl+"  "Tl"  "sp3" }
+>>     { "Cu+"  "Cu"  "sp3" }
+>>     { "Ag+"  "Ag"  "sp3" }
+>>     { "Be2+" "Be"  "sp3" }
+>>     { "Cu2+" "Cu"  "sp3" }
+>>     { "Ni2+" "Ni"  "sp3" }
+>>     { "Pt2+" "Pt"  "sp3" }
+>>     { "Zn2+" "Zn"  "sp3" }
+>>     { "Co2+" "Co"  "sp3" }
+>>     { "Pd2+" "Pd"  "sp3" }
+>>     { "Ag2+" "Ag"  "sp3" }
+>>     { "Cr2+" "Cr"  "sp3" }
+>>     { "Fe2+" "Fe"  "sp3" }
+>>     { "Mg2+" "Mg"  "sp3" }
+>>     { "V2+"  "V"   "sp3" }
+>>     { "Mn2+" "Mn"  "sp3" }
+>>     { "Hg2+" "Hg"  "sp3" }
+>>     { "Cd2+" "Cd"  "sp3" }
+>>     { "Yb2+" "Yb"  "sp3" }
+>>     { "Ca2+" "Ca"  "sp3" }
+>>     { "Sn2+" "Sn"  "sp3" }
+>>     { "Pb2+" "Pb"  "sp3" }
+>>     { "Eu2+" "Eu"  "sp3" }
+>>     { "Sr2+" "Sr"  "sp3" }
+>>     { "Sm2+" "Sm"  "sp3" }
+>>     { "Ba2+" "Ba"  "sp3" }
+>>     { "Ra2+" "Ra"  "sp3" }
+>>     { "Al3+" "Al"  "sp3" }
+>>     { "Fe3+" "Fe"  "sp3" }
+>>     { "Cr3+" "Cr"  "sp3" }
+>>     { "In3+" "In"  "sp3" }
+>>     { "Tl3+" "Tl"  "sp3" }
+>>     { "Y3+"  "Y"   "sp3" }
+>>     { "La3+" "La"  "sp3" }
+>>     { "Ce3+" "Ce"  "sp3" }
+>>     { "Pr3+" "Pr"  "sp3" }
+>>     { "Nd3+" "Nd"  "sp3" }
+>>     { "Sm3+" "Sm"  "sp3" }
+>>     { "Eu3+" "Eu"  "sp3" }
+>>     { "Gd3+" "Gd"  "sp3" }
+>>     { "Tb3+" "Tb"  "sp3" }
+>>     { "Dy3+" "Dy"  "sp3" }
+>>     { "Er3+" "Er"  "sp3" }
+>>     { "Tm3+" "Tm"  "sp3" }
+>>     { "Lu3+" "Lu"  "sp3" }
+>>     { "Hf4+" "Hf"  "sp3" }
+>>     { "Zr4+" "Zr"  "sp3" }
+>>     { "Ce4+" "Ce"  "sp3" }
+>>     { "U4+"  "U"   "sp3" }
+>>     { "Pu4+" "Pu"  "sp3" }
+>>     { "Th4+" "Th"  "sp3" }
+>> }
+>> loadOff atomic_ions.lib
+Loading library: /home/maciej/amber16/dat/leap/lib/atomic_ions.lib
+Loading: AG
+Loading: AL
+Loading: Ag
+Loading: BA
+Loading: BR
+Loading: Be
+Loading: CA
+Loading: CD
+Loading: CE
+Loading: CL
+Loading: CO
+Loading: CR
+Loading: CS
+Loading: CU
+Loading: CU1
+Loading: Ce
+Loading: Cl-
+Loading: Cr
+Loading: Dy
+Loading: EU
+Loading: EU3
+Loading: Er
+Loading: F
+Loading: FE
+Loading: FE2
+Loading: GD3
+Loading: H3O+
+Loading: HE+
+Loading: HG
+Loading: HZ+
+Loading: Hf
+Loading: IN
+Loading: IOD
+Loading: K
+Loading: K+
+Loading: LA
+Loading: LI
+Loading: LU
+Loading: MG
+Loading: MN
+Loading: NA
+Loading: NH4
+Loading: NI
+Loading: Na+
+Loading: Nd
+Loading: PB
+Loading: PD
+Loading: PR
+Loading: PT
+Loading: Pu
+Loading: RB
+Loading: Ra
+Loading: SM
+Loading: SR
+Loading: Sm
+Loading: Sn
+Loading: TB
+Loading: TL
+Loading: Th
+Loading: Tl
+Loading: Tm
+Loading: U4+
+Loading: V2+
+Loading: Y
+Loading: YB2
+Loading: ZN
+Loading: Zr
+>> loadOff solvents.lib
+Loading library: /home/maciej/amber16/dat/leap/lib/solvents.lib
+Loading: CHCL3BOX
+Loading: DC4
+Loading: FB3
+Loading: FB3BOX
+Loading: FB4
+Loading: FB4BOX
+Loading: MEOHBOX
+Loading: NMABOX
+Loading: OPC
+Loading: OPCBOX
+Loading: PL3
+Loading: POL3BOX
+Loading: QSPCFWBOX
+Loading: SPC
+Loading: SPCBOX
+Loading: SPCFWBOX
+Loading: SPF
+Loading: SPG
+Loading: T4E
+Loading: TIP3PBOX
+Loading: TIP3PFBOX
+Loading: TIP4PBOX
+Loading: TIP4PEWBOX
+Loading: TIP5PBOX
+Loading: TP3
+Loading: TP4
+Loading: TP5
+Loading: TPF
+>> HOH = TP3
+>> WAT = TP3
+>> loadAmberParams frcmod.ionsjc_tip3p
+Loading parameters: /home/maciej/amber16/dat/leap/parm/frcmod.ionsjc_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Monovalent ion parameters for Ewald and TIP3P water from Joung & Cheatham JPCB (2008)
+>> loadAmberParams frcmod.ions234lm_126_tip3p
+Loading parameters: /home/maciej/amber16/dat/leap/parm/frcmod.ions234lm_126_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Li/Merz ion parameters of divalent to tetravalent ions for TIP3P water model (12-6 normal usage set)
+>> 
+> 
+> loadamberparams ./LIB/pna_par.opt3.frcmod
+Loading parameters: ./LIB/pna_par.opt3.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+
+> # dihedral angles in ./LIB/pna_par.opt3.frcmod
+> # JCTC 2018; DOI: 10.1021/acs.jctc.8b00291
+> 
+> loadoff ./LIB/APN.lib
+Loading library: ./LIB/APN.lib
+Loading: APN
+> loadoff ./LIB/CPN.lib
+Loading library: ./LIB/CPN.lib
+Loading: CPN
+> loadoff ./LIB/GPN.lib
+Loading library: ./LIB/GPN.lib
+Loading: GPN
+> loadoff ./LIB/TPN.lib
+Loading library: ./LIB/TPN.lib
+Loading: TPN
+> loadoff ./LIB/APK.lib
+Loading library: ./LIB/APK.lib
+Loading: APK
+> loadoff ./LIB/NHE.lib
+Loading library: ./LIB/NHE.lib
+Loading: NHE
+> loadoff ./LIB/ACE.lib
+Loading library: ./LIB/ACE.lib
+Loading: ACE
+> 
+> addPdbAtomMap {
+> { "1H2" "H21" } 
+> { "2H2" "H22" }
+> { "3H7" "H73" }
+> { "1HN" "HN1" }
+> { "2HN" "HN2" }
+> 
+> { "1H6" "H61" }
+> { "2H6" "H62" }
+> { "1H4" "H41" }
+> { "2H4" "H42" }
+> { "3H4" "H43" }
+> { "1H7" "H71" }
+> { "2H7" "H72" }
+> { "OP1" "O1P" }
+> { "OP2" "O2P" }
+> { "O2*" "O2'" }
+> { "O2" "O2" }
+> {"N4" "N4"}
+> {"HO*2" "HO2'"}
+> }
+Substituting map O2* -> O2'  for  O2* -> O2'
+> 
+> a = loadpdb 5emf_noh.pdb
+Loading PDB file: ./5emf_noh.pdb
+Enter zPdbReadScan from call depth  0.
+ (starting new molecule for chain B)
+Warning: name change in pdb file residue 101 ;
+ this residue is split into ACE and GPN.
+Warning: name change in pdb file residue 108 ;
+ this residue is split into CPN and NHE.
+2 residues had naming warnings.
+ There are split residues;
+ residue sequence numbers will not correspond to those in the pdb.
+Exit  zPdbReadScan from call depth  0.
+Matching PDB residue names to LEaP variables.
+Mapped residue G, term: Terminal/beginning, seq. number: 0 to: G5.
+(Residue 1: C, Nonterminal, was not found in name map.)
+(Residue 2: U, Nonterminal, was not found in name map.)
+(Residue 3: G, Nonterminal, was not found in name map.)
+(Residue 4: C, Nonterminal, was not found in name map.)
+(Residue 5: U, Nonterminal, was not found in name map.)
+(Residue 6: G, Nonterminal, was not found in name map.)
+Mapped residue C, term: Terminal/last, seq. number: 7 to: C3.
+(Residue 8: ACE, Terminal/beginning, was not found in name map.)
+(Residue 9: GPN, Nonterminal, was not found in name map.)
+(Residue 10: CPN, Nonterminal, was not found in name map.)
+(Residue 11: APN, Nonterminal, was not found in name map.)
+(Residue 12: GPN, Nonterminal, was not found in name map.)
+(Residue 13: CPN, Nonterminal, was not found in name map.)
+(Residue 14: APN, Nonterminal, was not found in name map.)
+(Residue 15: GPN, Nonterminal, was not found in name map.)
+(Residue 16: CPN, Nonterminal, was not found in name map.)
+(Residue 17: NHE, Terminal/last, was not found in name map.)
+Joining G5 - C
+Joining C - U
+Joining U - G
+Joining G - C
+Joining C - U
+Joining U - G
+Joining G - C3
+Joining ACE - GPN
+Joining GPN - CPN
+Joining CPN - APN
+Joining APN - GPN
+Joining GPN - CPN
+Joining CPN - APN
+Joining APN - GPN
+Joining GPN - CPN
+Joining CPN - NHE
+  total atoms in file: 327
+  Leap added 197 missing atoms according to residue templates:
+       197 H / lone pairs
+> addIons a Na+ 0
+7 Na+ ions required to neutralize.
+Adding 7 counter ions to "a" using 1A grid
+Total solute charge:  -7.00  Max atom radius:   2.10
+Grid extends from solute vdw + 2.74  to  8.84
+Box:
+   enclosing:   5.65 15.08 12.78   58.04 57.60 54.99
+   sized:			      69.65 79.08 76.78
+   edge:        64.00
+Resolution:      1.00 Angstrom.
+Tree depth: 6
+grid build: 0 sec
+Volume =  8.96% of box, grid points 23487
+ (no solvent present)
+Calculating grid charges
+charges: 0 sec
+Placed Na+ in a at (38.65, 44.08, 25.78).
+Placed Na+ in a at (31.65, 36.08, 20.78).
+Placed Na+ in a at (33.65, 47.08, 36.78).
+Placed Na+ in a at (38.65, 48.08, 30.78).
+Placed Na+ in a at (28.65, 27.08, 18.78).
+Placed Na+ in a at (37.65, 39.08, 20.78).
+Placed Na+ in a at (35.65, 34.08, 41.78).
+
+Done adding ions.
+> solvateBox a TIP3PBOX 15
+  Solute vdw bounding box:              37.868 27.899 30.132
+  Total bounding box for atom centers:  67.868 57.899 60.132
+  Solvent unit box:                     18.774 18.774 18.774
+The number of boxes:  x= 4  y= 4  z= 4
+Adding box at: x=0  y=0  z=0
+Center of solvent box is: 28.161524, 28.161524, 28.161524
+Adding box at: x=0  y=0  z=1
+Center of solvent box is: 28.161524, 28.161524, 9.387175
+Adding box at: x=0  y=0  z=2
+Center of solvent box is: 28.161524, 28.161524, -9.387175
+Adding box at: x=0  y=0  z=3
+Center of solvent box is: 28.161524, 28.161524, -28.161524
+Adding box at: x=0  y=1  z=0
+Center of solvent box is: 28.161524, 9.387175, 28.161524
+Adding box at: x=0  y=1  z=1
+Center of solvent box is: 28.161524, 9.387175, 9.387175
+Adding box at: x=0  y=1  z=2
+Center of solvent box is: 28.161524, 9.387175, -9.387175
+Adding box at: x=0  y=1  z=3
+Center of solvent box is: 28.161524, 9.387175, -28.161524
+Adding box at: x=0  y=2  z=0
+Center of solvent box is: 28.161524, -9.387175, 28.161524
+Adding box at: x=0  y=2  z=1
+Center of solvent box is: 28.161524, -9.387175, 9.387175
+Adding box at: x=0  y=2  z=2
+Center of solvent box is: 28.161524, -9.387175, -9.387175
+Adding box at: x=0  y=2  z=3
+Center of solvent box is: 28.161524, -9.387175, -28.161524
+Adding box at: x=0  y=3  z=0
+Center of solvent box is: 28.161524, -28.161524, 28.161524
+Adding box at: x=0  y=3  z=1
+Center of solvent box is: 28.161524, -28.161524, 9.387175
+Adding box at: x=0  y=3  z=2
+Center of solvent box is: 28.161524, -28.161524, -9.387175
+Adding box at: x=0  y=3  z=3
+Center of solvent box is: 28.161524, -28.161524, -28.161524
+Adding box at: x=1  y=0  z=0
+Center of solvent box is: 9.387175, 28.161524, 28.161524
+Adding box at: x=1  y=0  z=1
+Center of solvent box is: 9.387175, 28.161524, 9.387175
+Adding box at: x=1  y=0  z=2
+Center of solvent box is: 9.387175, 28.161524, -9.387175
+Adding box at: x=1  y=0  z=3
+Center of solvent box is: 9.387175, 28.161524, -28.161524
+Adding box at: x=1  y=1  z=0
+Center of solvent box is: 9.387175, 9.387175, 28.161524
+Adding box at: x=1  y=1  z=1
+Center of solvent box is: 9.387175, 9.387175, 9.387175
+Adding box at: x=1  y=1  z=2
+Center of solvent box is: 9.387175, 9.387175, -9.387175
+Adding box at: x=1  y=1  z=3
+Center of solvent box is: 9.387175, 9.387175, -28.161524
+Adding box at: x=1  y=2  z=0
+Center of solvent box is: 9.387175, -9.387175, 28.161524
+Adding box at: x=1  y=2  z=1
+Center of solvent box is: 9.387175, -9.387175, 9.387175
+Adding box at: x=1  y=2  z=2
+Center of solvent box is: 9.387175, -9.387175, -9.387175
+Adding box at: x=1  y=2  z=3
+Center of solvent box is: 9.387175, -9.387175, -28.161524
+Adding box at: x=1  y=3  z=0
+Center of solvent box is: 9.387175, -28.161524, 28.161524
+Adding box at: x=1  y=3  z=1
+Center of solvent box is: 9.387175, -28.161524, 9.387175
+Adding box at: x=1  y=3  z=2
+Center of solvent box is: 9.387175, -28.161524, -9.387175
+Adding box at: x=1  y=3  z=3
+Center of solvent box is: 9.387175, -28.161524, -28.161524
+Adding box at: x=2  y=0  z=0
+Center of solvent box is: -9.387175, 28.161524, 28.161524
+Adding box at: x=2  y=0  z=1
+Center of solvent box is: -9.387175, 28.161524, 9.387175
+Adding box at: x=2  y=0  z=2
+Center of solvent box is: -9.387175, 28.161524, -9.387175
+Adding box at: x=2  y=0  z=3
+Center of solvent box is: -9.387175, 28.161524, -28.161524
+Adding box at: x=2  y=1  z=0
+Center of solvent box is: -9.387175, 9.387175, 28.161524
+Adding box at: x=2  y=1  z=1
+Center of solvent box is: -9.387175, 9.387175, 9.387175
+Adding box at: x=2  y=1  z=2
+Center of solvent box is: -9.387175, 9.387175, -9.387175
+Adding box at: x=2  y=1  z=3
+Center of solvent box is: -9.387175, 9.387175, -28.161524
+Adding box at: x=2  y=2  z=0
+Center of solvent box is: -9.387175, -9.387175, 28.161524
+Adding box at: x=2  y=2  z=1
+Center of solvent box is: -9.387175, -9.387175, 9.387175
+Adding box at: x=2  y=2  z=2
+Center of solvent box is: -9.387175, -9.387175, -9.387175
+Adding box at: x=2  y=2  z=3
+Center of solvent box is: -9.387175, -9.387175, -28.161524
+Adding box at: x=2  y=3  z=0
+Center of solvent box is: -9.387175, -28.161524, 28.161524
+Adding box at: x=2  y=3  z=1
+Center of solvent box is: -9.387175, -28.161524, 9.387175
+Adding box at: x=2  y=3  z=2
+Center of solvent box is: -9.387175, -28.161524, -9.387175
+Adding box at: x=2  y=3  z=3
+Center of solvent box is: -9.387175, -28.161524, -28.161524
+Adding box at: x=3  y=0  z=0
+Center of solvent box is: -28.161524, 28.161524, 28.161524
+Adding box at: x=3  y=0  z=1
+Center of solvent box is: -28.161524, 28.161524, 9.387175
+Adding box at: x=3  y=0  z=2
+Center of solvent box is: -28.161524, 28.161524, -9.387175
+Adding box at: x=3  y=0  z=3
+Center of solvent box is: -28.161524, 28.161524, -28.161524
+Adding box at: x=3  y=1  z=0
+Center of solvent box is: -28.161524, 9.387175, 28.161524
+Adding box at: x=3  y=1  z=1
+Center of solvent box is: -28.161524, 9.387175, 9.387175
+Adding box at: x=3  y=1  z=2
+Center of solvent box is: -28.161524, 9.387175, -9.387175
+Adding box at: x=3  y=1  z=3
+Center of solvent box is: -28.161524, 9.387175, -28.161524
+Adding box at: x=3  y=2  z=0
+Center of solvent box is: -28.161524, -9.387175, 28.161524
+Adding box at: x=3  y=2  z=1
+Center of solvent box is: -28.161524, -9.387175, 9.387175
+Adding box at: x=3  y=2  z=2
+Center of solvent box is: -28.161524, -9.387175, -9.387175
+Adding box at: x=3  y=2  z=3
+Center of solvent box is: -28.161524, -9.387175, -28.161524
+Adding box at: x=3  y=3  z=0
+Center of solvent box is: -28.161524, -28.161524, 28.161524
+Adding box at: x=3  y=3  z=1
+Center of solvent box is: -28.161524, -28.161524, 9.387175
+Adding box at: x=3  y=3  z=2
+Center of solvent box is: -28.161524, -28.161524, -9.387175
+Adding box at: x=3  y=3  z=3
+Center of solvent box is: -28.161524, -28.161524, -28.161524
+  Total vdw box size:                   70.504 60.892 63.093 angstroms.
+  Volume: 270867.139 A^3 
+  Total mass 131725.346 amu,  Density 0.808 g/cc
+  Added 7040 residues.
+> saveamberparm a 5emf.prm 5emf.crd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  NB-C-CB-CB
+        atoms are: N7 C6 C5 C4
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  NB-C-CB-CB
+        atoms are: N7 C6 C5 C4
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  NB-C-CB-CB
+        atoms are: N7 C6 C5 C4
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  NB-C-CB-CB
+        atoms are: N7 C6 C5 C4
+ ** Warning: No sp2 improper torsion term for  CB-NB-CB-CA
+        atoms are: C4 N7 C5 C6
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  NB-C-CB-CB
+        atoms are: N7 C6 C5 C4
+ ** Warning: No sp2 improper torsion term for  CB-NB-CB-CA
+        atoms are: C4 N7 C5 C6
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  N*-CB-CB-NC
+        atoms are: N9 C5 C4 N3
+ ** Warning: No sp2 improper torsion term for  NB-C-CB-CB
+        atoms are: N7 C6 C5 C4
+--Impropers:
+  1	C1'<C3> - C6<C3> - N1<C3> - C2<C3>
+  2	C1'<C> - C6<C> - N1<C> - C2<C>
+  1	C1'<G5> - C8<G5> - N9<G5> - C4<G5>
+  2	C1'<G> - C8<G> - N9<G> - C4<G>
+  2	C1'<U> - C6<U> - N1<U> - C2<U>
+  2	C2*<APN> - H1*2<APN> - N1*<APN> - C*<CPN>
+  3	C2*<CPN> - H1*2<CPN> - N1*<CPN> - C*<GPN>
+  2	C2*<GPN> - H1*2<GPN> - N1*<GPN> - C*<APN>
+  1	C2*<GPN> - H1*2<GPN> - N1*<GPN> - C<ACE>
+  1	C2<G5> - H21<G5> - N2<G5> - H22<G5>
+  2	C2<G> - H21<G> - N2<G> - H22<G>
+  3	C2<GPN> - H21<GPN> - N2<GPN> - H22<GPN>
+  2	C4<APN> - C8*<APN> - N9<APN> - C8<APN>
+  1	C4<C3> - H41<C3> - N4<C3> - H42<C3>
+  2	C4<C> - H41<C> - N4<C> - H42<C>
+  3	C4<CPN> - H41<CPN> - N4<CPN> - H42<CPN>
+  3	C4<CPN> - H5<CPN> - C5<CPN> - C6<CPN>
+  2	C4<U> - H3<U> - N3<U> - C2<U>
+  2	C5*<APN> - C3*<APN> - N4*<APN> - C7*<APN>
+  2	C5*<APN> - O1*<APN> - C*<APN> - N1*<GPN>
+  2	C5*<CPN> - O1*<CPN> - C*<CPN> - N1*<APN>
+  1	C5*<CPN> - O1*<CPN> - C*<CPN> - N<NHE>
+  3	C5*<GPN> - O1*<GPN> - C*<GPN> - N1*<CPN>
+  2	C5<APN> - N6<APN> - C6<APN> - N1<APN>
+  1	C5<C3> - N4<C3> - C4<C3> - N3<C3>
+  2	C5<C> - N4<C> - C4<C> - N3<C>
+  1	C5<G5> - O6<G5> - C6<G5> - N1<G5>
+  2	C5<G> - O6<G> - C6<G> - N1<G>
+  3	C5<GPN> - O6<GPN> - C6<GPN> - N1<GPN>
+  2	C5<U> - O4<U> - C4<U> - N3<U>
+  2	C6<APN> - H61<APN> - N6<APN> - H62<APN>
+  1	C6<C3> - H5<C3> - C5<C3> - C4<C3>
+  2	C6<C> - H5<C> - C5<C> - C4<C>
+  1	C6<G5> - H1<G5> - N1<G5> - C2<G5>
+  2	C6<G> - H1<G> - N1<G> - C2<G>
+  3	C6<GPN> - H1<GPN> - N1<GPN> - C2<GPN>
+  2	C6<U> - H5<U> - C5<U> - C4<U>
+  3	C7*<CPN> - C5*<CPN> - N4*<CPN> - C3*<CPN>
+  3	C7*<GPN> - C5*<GPN> - N4*<GPN> - C3*<GPN>
+  3	C8*<CPN> - C2<CPN> - N1<CPN> - C6<CPN>
+  3	C8*<CPN> - O7*<CPN> - C7*<CPN> - N4*<CPN>
+  3	C8*<GPN> - C8<GPN> - N9<GPN> - C4<GPN>
+  3	C8*<GPN> - O7*<GPN> - C7*<GPN> - N4*<GPN>
+  1	CH3<ACE> - O<ACE> - C<ACE> - N1*<GPN>
+  1	HN1<NHE> - HN2<NHE> - N<NHE> - C*<CPN>
+  2	N1<APN> - H2<APN> - C2<APN> - N3<APN>
+  1	N1<C3> - H6<C3> - C6<C3> - C5<C3>
+  1	N1<C3> - N3<C3> - C2<C3> - O2<C3>
+  2	N1<C> - H6<C> - C6<C> - C5<C>
+  2	N1<C> - N3<C> - C2<C> - O2<C>
+  3	N1<CPN> - C5<CPN> - C6<CPN> - H6<CPN>
+  3	N1<CPN> - N3<CPN> - C2<CPN> - O2<CPN>
+  1	N1<G5> - N2<G5> - C2<G5> - N3<G5>
+  2	N1<G> - N2<G> - C2<G> - N3<G>
+  3	N1<GPN> - N2<GPN> - C2<GPN> - N3<GPN>
+  2	N1<U> - H6<U> - C6<U> - C5<U>
+  2	N1<U> - N3<U> - C2<U> - O2<U>
+  3	N3<CPN> - C5<CPN> - C4<CPN> - N4<CPN>
+  2	N4*<APN> - O7*<APN> - C7*<APN> - C8*<APN>
+  2	N9<APN> - H8<APN> - C8<APN> - N7<APN>
+  1	N9<G5> - H8<G5> - C8<G5> - N7<G5>
+  2	N9<G> - H8<G> - C8<G> - N7<G>
+  3	N9<GPN> - H8<GPN> - C8<GPN> - N7<GPN>
+ total 128 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	WAT	7040
+  )
+ (no restraints)
+> savepdb a 5emf.amber.pdb
+Writing pdb file: 5emf.amber.pdb
+   printing CRYST1 record to PDB file with box info
+> 
+> quit
+	Quit
