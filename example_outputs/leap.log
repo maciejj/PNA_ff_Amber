@@ -1,4 +1,4 @@
-log started: Tue Jun 26 12:02:06 2018
+log started: Thu Jul 12 11:37:38 2018
 
 Log file: ./leap.log
 >> # ----- NOTE: this is designed for PDB format 3!
@@ -373,29 +373,6 @@ Loading: NHE
 Loading library: ./LIB/ACE.lib
 Loading: ACE
 > 
-> addPdbAtomMap {
-> { "1H2" "H21" } 
-> { "2H2" "H22" }
-> { "3H7" "H73" }
-> { "1HN" "HN1" }
-> { "2HN" "HN2" }
-> 
-> { "1H6" "H61" }
-> { "2H6" "H62" }
-> { "1H4" "H41" }
-> { "2H4" "H42" }
-> { "3H4" "H43" }
-> { "1H7" "H71" }
-> { "2H7" "H72" }
-> { "OP1" "O1P" }
-> { "OP2" "O2P" }
-> { "O2*" "O2'" }
-> { "O2" "O2" }
-> {"N4" "N4"}
-> {"HO*2" "HO2'"}
-> }
-Substituting map O2* -> O2'  for  O2* -> O2'
-> 
 > a = loadpdb 5emf_noh.pdb
 Loading PDB file: ./5emf_noh.pdb
 Enter zPdbReadScan from call depth  0.
@@ -461,7 +438,7 @@ grid build: 0 sec
 Volume =  8.96% of box, grid points 23487
  (no solvent present)
 Calculating grid charges
-charges: 0 sec
+charges: 1 sec
 Placed Na+ in a at (38.65, 44.08, 25.78).
 Placed Na+ in a at (31.65, 36.08, 20.78).
 Placed Na+ in a at (33.65, 47.08, 36.78).
